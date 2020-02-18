@@ -72,6 +72,8 @@ export const deleteData = (id)  => dispatch => {
     const token = localStorage.getItem('token');
     return axios.delete(`${urlPath}blogs/delete/${id}`,{headers:{"authorization":`Bearer ${token}`}}).then(res=>{
         dispatch(fetchData());
+        alert('Blog has been deleted.')
+        window.location.reload();
         //history.push('/my-blog');
     })
 }

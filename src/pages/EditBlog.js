@@ -1,10 +1,12 @@
 import React,{Component} from 'react';
-import { Formik } from 'formik';
+import { Formik,Field} from 'formik';
 import {connect} from 'react-redux';
 import {updateData, getDataBlog} from '../store/blogsAction';
 import {Container,Row,Col,Card,Form,FormGroup,Label,Input,CardBody,Button} from 'reactstrap';
 import { withRouter } from 'react-router-dom';
 import jwt from 'jwt-decode';
+import ReactQuill from 'react-quill'; 
+import 'react-quill/dist/quill.snow.css';
 
 class EditBlog extends Component {
 
@@ -35,10 +37,10 @@ class EditBlog extends Component {
     return (
         <Container>
             <Row>
-                <Col xs={12} md={{size:4,offset:4}}>
+                <Col xs={12} md={{size:8,offset:2}}>
                     <Card>
                         <CardBody>
-                            <h3>Add Blog</h3>
+                            <h3 className='text-center alert alert-warning'>Edit Blog</h3>
                             <Formik
                             initialValues={{ title: this.props.dataku.title, body: this.props.dataku.body , image:'',author:idku}}
                             validate={values => {
@@ -92,13 +94,9 @@ class EditBlog extends Component {
                                 <FormGroup>
                                 <Label for="exampleEmail">Body</Label>
                                 {errors.body && touched.body && errors.body}
-                                <Input
-                                    type="text"
-                                    name="body"
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    value={values.body||""}
-                                />
+                                <Field name="body">
+                                    {({ field }) => <ReactQuill value={field.value || ''} onChange={field.onChange(field.name)} />}
+                                   </Field>
                                 </FormGroup>
                                 <FormGroup>
                                 <Label for="exampleEmail">Image</Label>

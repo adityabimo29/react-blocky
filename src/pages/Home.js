@@ -36,10 +36,10 @@ class Home extends Component {
                         return (
                             <Col key={index} xs={12} md={4} className='mb-4'>
                             <Card className='cardo'>
-                                <CardImg style={{maxHeight:'200px'}} top width="100%" src={gambaria + item.image} alt="Card image cap" />
+                                <CardImg style={{maxHeight:'200px',minHeight:'200px'}} top width="100%" src={gambaria + item.image} alt="Card image cap" />
                                 <CardBody>
                                 <CardTitle>{item.title}</CardTitle>
-                                <CardText>{content}...</CardText>
+                                <CardText dangerouslySetInnerHTML={{__html: content}}></CardText>
                                 <Button tag={Link} to={`/blogs/detail/${item._id}`} color='info' outline>Read More</Button>
                                 </CardBody>
                             </Card>

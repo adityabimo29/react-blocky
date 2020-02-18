@@ -1,16 +1,18 @@
 import React,{useState} from 'react';
-import { Formik } from 'formik';
+import { Formik ,  Field} from 'formik';
 import {connect} from 'react-redux';
 import {postData} from '../store/blogsAction';
 import {Container,Row,Col,Card,Form,FormGroup,Label,Input,CardBody,Button} from 'reactstrap';
 import { withRouter } from 'react-router';
 import jwt from 'jwt-decode';
+import ReactQuill from 'react-quill'; 
+import 'react-quill/dist/quill.snow.css';
 
 function AddBlog(props) {
 
     const  [gambarType,setGambarType] = useState('');
     const  [gambarImage,setGambarImage] = useState('');
-
+    
     const handleImage = (e) => {
         setGambarType(e.target.files[0]);
         setGambarImage(URL.createObjectURL(e.target.files[0]))
@@ -20,9 +22,9 @@ function AddBlog(props) {
     const dekode = jwt(token);
     const idku   = dekode._id;
     return (
-        <Container>
+        <Container className='mt-4'>
             <Row>
-                <Col xs={12} md={{size:4,offset:4}}>
+                <Col xs={12} md={{size:8,offset:2}}>
                     <Card>
                         <CardBody>
                             <h3>Add Blog</h3>
@@ -47,9 +49,6 @@ function AddBlog(props) {
                                         }
                                     }
                                     props.postData(formData);
-                                    
-                                    
-                                
                             }}
                             >
                             {({
@@ -81,13 +80,9 @@ function AddBlog(props) {
                                 <FormGroup>
                                 <Label for="exampleEmail">Body</Label>
                                 {errors.body && touched.body && errors.body}
-                                <Input
-                                    type="text"
-                                    name="body"
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    value={values.body}
-                                />
+                                  <Field name="body">
+                                    {({ field }) => <ReactQuill value={field.value} onChange={field.onChange(field.name)} />}
+                                   </Field>
                                 </FormGroup>
                                 <FormGroup>
                                 <Label for="exampleEmail">Image</Label>

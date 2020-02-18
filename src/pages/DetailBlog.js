@@ -13,6 +13,7 @@ class DetailBlog extends Component {
     render() {
         const {data} = this.props;
         const gambaria = process.env.REACT_APP_IMAGE
+        const body = data.body;
         return (
             <Container>
                 <Row>
@@ -20,7 +21,7 @@ class DetailBlog extends Component {
                         <Card style={{padding:'10px'}}>
                         <h1 className='text-center'>{data.title}</h1>
                         <img style={{width:'100%'}} alt='gambar' src={gambaria + data.image} />
-                        <p>{data.body}</p>
+                        <p dangerouslySetInnerHTML={{__html: body}}></p>
                         </Card>
                     </Col>
                 </Row>

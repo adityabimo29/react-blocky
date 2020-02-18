@@ -19,7 +19,7 @@ class Blogs extends Component {
     handleDelete = (e) => {
         //alert(e);
         this.props.deleteData(e);
-        window.location.reload();
+        
     }
 
     componentDidMount() {
@@ -56,11 +56,11 @@ class Blogs extends Component {
                                     <tr key={index}>
                                     <th scope="row">{index + 1}</th>
                                     <td>{item.title}</td>
-                                    <td>{content}...</td>
+                                    <td><div dangerouslySetInnerHTML={{__html: content}}></div></td>
                                     <td><img style={{width:"100px"}} src={gambaria + item.image} alt={item.image} /></td>
                                     <td>
                                         <Button className='mr-2' tag={Link} to={`/blogs/edit/${item._id}`} color="warning">Edit</Button>
-                                        <small onClick={event => {this.handleDelete(item._id)}} className='btn btn-danger'>Delete</small>
+                                        <small onClick={() => {this.handleDelete(item._id)}} className='btn btn-danger'>Delete</small>
                                     </td>
                                     </tr>
                                 )
