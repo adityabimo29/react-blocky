@@ -13,7 +13,11 @@ class Profile extends Component {
 
     componentDidMount = () => {
         const token = localStorage.getItem('token');
-        const dekode = jwt(token);
+        let dekode =''
+        if(token){
+            dekode = jwt(token);
+        }
+        
         this.setState({data:dekode});
     }
 
