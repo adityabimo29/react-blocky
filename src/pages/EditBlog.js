@@ -118,8 +118,8 @@ class EditBlog extends Component {
                                 </FormGroup>
                                 {this.state.gambarType !== "" ? (
                                     <img src={this.state.gambarImage} alt="avatar" style={{width:'100px'}} />
-                                ): (<img alt='oldImage' src={ this.state.urlImg + this.props.dataku.image} />)}
-                                <Button type='submit' color="primary" size="md" block disabled={isSubmitting}>Submit</Button>
+                                ): (<img style={{width:'150px'}} alt='oldImage' src={ this.state.urlImg + this.props.dataku.image} />)}
+                                <Button style={{marginTop:'10px'}} type='submit' color="primary" size="md" block disabled={isSubmitting}>Submit</Button>
                                 </Form>
                             )}
                             </Formik>

@@ -7,12 +7,13 @@ import { withRouter } from 'react-router';
 
 function Login(props) {
     return (
-        <Container>
+        <div className='myBg py-5'>
+        <Container className='pt-5'>
             <Row>
                 <Col xs={12} md={{size:4,offset:4}}>
                     <Card>
                         <CardBody>
-                            <h3>Login Form</h3>
+                            <h3 className='text-center'>Login Form</h3>
                             <Formik
                             initialValues={{ email: '', password: '' }}
                             validate={values => {
@@ -78,6 +79,7 @@ function Login(props) {
                 </Col>
             </Row>
         </Container>
+        </div>
     )
 }
 

@@ -4,16 +4,16 @@ import {connect} from 'react-redux';
 import {register} from '../store/usersAction';
 import {Container,Row,Col,Card,Form,FormGroup,Label,Input,CardBody,Button} from 'reactstrap';
 import { withRouter } from 'react-router';
-import history from '../history';
 
 function Register(props) {
     return (
+        <div className='myBg2 py-5'>
         <Container>
             <Row>
                 <Col xs={12} md={{size:4,offset:4}}>
                     <Card>
                         <CardBody>
-                            <h3>Registration Form</h3>
+                            <h3 className='text-center'>Registration Form</h3>
                             <Formik
                             initialValues={{ username:'',email: '', password: '' }}
                             validate={values => {
@@ -28,9 +28,8 @@ function Register(props) {
                                 return errors;
                             }}
                             onSubmit={(values, { setSubmitting }) => {
-                                //props.register(values);
-                                alert('Register Success')
-                                history.push('/login')
+                                props.register(values);
+                                
                             }}
                             >
                             {({
@@ -89,6 +88,7 @@ function Register(props) {
                 </Col>
             </Row>
         </Container>
+        </div>
     )
 }
 

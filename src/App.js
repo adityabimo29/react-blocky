@@ -10,10 +10,11 @@ import Register from './pages/Register';
 import AddBlog from './pages/AddBlog';
 import EditBlog from './pages/EditBlog';
 import DetailBlog from './pages/DetailBlog';
+import Footer from './components/Footer';
 
 function App(props) {
   return (
-    <Router history={history}>
+    <Router history={history} >
       <Navbar />
       <Switch>
         <Route exact path='/' component={Home} />
@@ -35,6 +36,7 @@ function App(props) {
           <AddBlog />
         </Route>
       </Switch>
+      <Footer />
     </Router>
   );
 }

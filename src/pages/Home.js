@@ -28,9 +28,9 @@ class Home extends Component {
         return (
             
             <Container className='mt-4'>
+                <h1 className='text-center alert alert-info cardo'> Welcome to My Blocky App</h1>
                 { !isLoading ? (
                 <Row >
-
                     {this.props.data.map( (item,index) =>{
                         let content = item.body.substr(0,150);
                         return (

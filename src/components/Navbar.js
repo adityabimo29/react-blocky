@@ -28,7 +28,10 @@ const Navbaria = (props) => {
   }
 
   const token  = localStorage.getItem('token');
-  const dekode = jwt(token);
+  let dekode = '';
+  if(token){
+    dekode = jwt(token)
+  }
 
   
 
@@ -61,7 +64,6 @@ const Navbaria = (props) => {
             <Button tag={Link} to='/register' outline color="success">Register</Button>
             </Fragment>
           )}
-          
         </Collapse>
       </Navbar>
     </div>
