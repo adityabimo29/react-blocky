@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {checkUsers} from '../store/usersAction';
 import {Container,Row,Col,Card,Form,FormGroup,Label,Input,CardBody,Button} from 'reactstrap';
 import { withRouter } from 'react-router';
+import Swal from 'sweetalert2'
 
 function Login(props) {
     return (
@@ -30,6 +31,14 @@ function Login(props) {
                             onSubmit={(values, { setSubmitting }) => {
                                 setTimeout(() => {
                                 setSubmitting(false);
+                                Swal.fire({
+                                    position: 'top-center',
+                                    icon: 'info',
+                                    title: 'Loading',
+                                    showConfirmButton: false,
+                                    timerProgressBar: true,
+                                    timer: 1000
+                                  })
                                 props.checkUsers(values);
                                 }, 400);
                             }}

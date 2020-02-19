@@ -34,17 +34,12 @@ export const checkUsers = (data) => dispatch => {
         if(res.data !== 'gagal'){
             localStorage.setItem('token',res.data.token);
             dispatch(loggedIn(data));
-             
             Swal.fire({
                 title: 'Login Success !',
                 position: 'center',
                 icon: 'success',
-                backdrop: `
-                rgba(0,0,123,0.4)
-                url("../../poke.gif")
-                center top
-                no-repeat
-                `
+                timer:2000,
+                showConfirmButton: false,
             })
             history.push('/my-blog');
         }else{
@@ -59,7 +54,13 @@ export const checkUsers = (data) => dispatch => {
 
 export const register = (data)  => {
     return axios.post(`${urlPath}users/register`,data).then(res=>{
-        alert('Register Success');
+        Swal.fire({
+            title: 'Registration Success !',
+            position: 'center',
+            icon: 'success',
+            timer:2000,
+            showConfirmButton: false,
+        })
         history.push('/login');
     })
 }
