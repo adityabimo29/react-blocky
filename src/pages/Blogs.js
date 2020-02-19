@@ -25,10 +25,10 @@ class Blogs extends Component {
     componentDidMount() {
         this.props.showData();
         this.setState({isLoading:false});
-        
+        console.log(this.props.data)
     }
 
-    
+    const 
 
     render() {
         const {isLoading,gambaria} = this.state;
@@ -39,6 +39,7 @@ class Blogs extends Component {
                 <Row>
                     <Col xs={12} md={12}>
                     <Button className='mb-2' tag={Link} to='/blogs/add' color="success">Add Blog</Button>
+                    {this.props.data.length > 0 ? (
                     <Table striped>
                         <thead>
                             <tr>
@@ -50,7 +51,7 @@ class Blogs extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.props.data.map( (item,index) =>{
+                            { this.props.data.map( (item,index) =>{
                                 let content = item.body.substr(0,50);
                                 return (
                                     <tr key={index}>
@@ -67,6 +68,7 @@ class Blogs extends Component {
                             } )}
                         </tbody>
                         </Table>
+                        ) : <h3 className='alert alert-info text-center'>Your Data Blog is 0</h3>}
                     </Col>
                 </Row>
                 ) : (<p>Loading</p>)}
