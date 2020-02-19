@@ -1,7 +1,7 @@
 import axios from 'axios';
 import history from '../history';
 import jwt from 'jwt-decode';
-
+import Swal from 'sweetalert2'
 export const LOGGED_IN = 'LOGGED_IN';
 export const LOGGED_OUT = 'LOGGED_OUT';
 export const GET_BY_ID = 'GET_BY_ID';
@@ -34,9 +34,25 @@ export const checkUsers = (data) => dispatch => {
         if(res.data !== 'gagal'){
             localStorage.setItem('token',res.data.token);
             dispatch(loggedIn(data));
+             
+            Swal.fire({
+                title: 'Login Success !',
+                position: 'center',
+                icon: 'success',
+                backdrop: `
+                rgba(0,0,123,0.4)
+                url("../../poke.gif")
+                center top
+                no-repeat
+                `
+            })
             history.push('/my-blog');
         }else{
-            alert('Email or Password is wrong.');
+            Swal.fire({
+                title: 'Email or Password is wrong !',
+                position: 'center',
+                icon: 'error',
+            })
         }
     })
 }

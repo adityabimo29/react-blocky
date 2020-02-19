@@ -31,7 +31,7 @@ function App(props) {
         <Route path='/register' >
           <Register />
         </Route>
-        <Route path='/blogs/edit/:id'  >
+        <Route path='/blogs/edit/:id' >
           {props.isLogin ? <EditBlog /> : <Redirect to='/' /> }
         </Route>
         <Route path='/blogs/detail/:id' component={DetailBlog} />
