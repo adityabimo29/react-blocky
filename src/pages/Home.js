@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import {Container,Row,Col,Card, CardImg, CardText, CardBody,
+import {Container,Row,Col,Card, CardText, CardBody,
     CardTitle,  Button} from 'reactstrap';
 //import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { fetchData } from '../store/blogsAction';
 import { Link} from 'react-router-dom';
+import ReactImageFallback from "react-image-fallback";
 //import axios from 'axios';
 class Home extends Component {
 
@@ -19,6 +20,10 @@ class Home extends Component {
     componentDidMount() {
         this.props.showData();
         this.setState({isLoading:false}) 
+    }
+
+    addDefaultSrc(ev){
+        ev.target.src = 'assets/blocky.jpg';
     }
 
     
@@ -36,10 +41,17 @@ class Home extends Component {
                         return (
                             <Col key={index} xs={12} md={4} className='mb-4'>
                             <Card className='cardo'>
-                                <CardImg style={{maxHeight:'200px',minHeight:'200px'}} top width="100%" src={gambaria + item.image} alt="Card image cap" />
+                            <ReactImageFallback
+                                src={gambaria + item.image}
+                                fallbackImage={`${gambaria}assets/blocky.jpg`}
+                                alt="cool image should be here"
+                                className="my-image"
+                                style={{width:'100%',maxHeight:'200px',minHeight:'200px'}}
+                                />
+                                {/* <CardImg onError={(ev)=>{ ev.target.src ='assets/blocky.jpg'} } style={{maxHeight:'200px',minHeight:'200px'}} top width="100%" src={gambaria + item.image} alt="Card image cap" /> */}
                                 <CardBody>
                                 <CardTitle>{item.title}</CardTitle>
-                                <CardText dangerouslySetInnerHTML={{__html: content}}></CardText>
+                                <CardText style={{maxHeight:'72px',overflow:'hidden'}} dangerouslySetInnerHTML={{__html: content}}></CardText>
                                 <Button tag={Link} to={`/blogs/detail/${item._id}`} color='info' outline>Read More</Button>
                                 </CardBody>
                             </Card>
