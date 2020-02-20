@@ -14,6 +14,7 @@ import {
 import { connect } from 'react-redux';
 import {loggedOut} from '../store/usersAction';
 import jwt from 'jwt-decode';
+import Swal from 'sweetalert2';
 
 const Navbaria = (props) => {     
   const [isOpen, setIsOpen] = useState(false);
@@ -22,9 +23,27 @@ const Navbaria = (props) => {
 
   
   const handleLogout = () => {
-    localStorage.clear();
-    props.loggedOut();
-    props.history.push('/login');
+  
+    Swal.fire({
+      text: "Are You Sure to logout ?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yippi !'
+    }).then((result) => {
+      if (result.value) {
+        Swal.fire(
+          'Success!',
+          'Your have logged out!',
+          'success'
+        )
+        localStorage.clear();
+        props.loggedOut();
+        props.history.push('/login');
+      }
+    })
+    
   }
 
   const token  = localStorage.getItem('token');
