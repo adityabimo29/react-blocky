@@ -1,7 +1,7 @@
 import axios from 'axios';
 import jwt from 'jwt-decode';
 import history from '../history';
-
+import Swal from 'sweetalert2';
 export const GET_DATA = 'GET_DATA';
 export const GET_BY_AUTHOR = 'GET_BY_AUTHOR';
 export const GET_BY_ID_BLOG = 'GET_BY_ID_BLOG';
@@ -47,7 +47,14 @@ export const fetchBlogKu = () => dispatch => {
 export const postData = (data)  => {
     const token = localStorage.getItem('token');
     return axios.post(`${urlPath}blogs/add`,data,{headers:{"authorization":`Bearer ${token}`}}).then(res=>{
-        console.log(res.data);
+        //console.log(res.data);
+        Swal.fire({
+            title: 'Data has been added !',
+            position: 'center',
+            icon: 'success',
+            timer:1500,
+            showConfirmButton: false,
+        })
         history.push('/my-blog');
     })
 }
@@ -63,17 +70,24 @@ export const getDataBlog = data => async dispatch => {
 export const updateData = (data,id)  => {
     const token = localStorage.getItem('token');
     return axios.put(`${urlPath}blogs/edit/${id}`,data,{headers:{"authorization":`Bearer ${token}`}}).then(res=>{
-        console.log(res.data);
+        //console.log(res.data);
+        Swal.fire({
+            title: 'Data has been updated !',
+            position: 'center',
+            icon: 'info',
+            timer:1500,
+            showConfirmButton: false,
+        })
         history.push('/my-blog');
     })
 }
 
+
 export const deleteData = (id)  => dispatch => {
     const token = localStorage.getItem('token');
     return axios.delete(`${urlPath}blogs/delete/${id}`,{headers:{"authorization":`Bearer ${token}`}}).then(res=>{
-        dispatch(fetchData());
-        alert('Blog has been deleted.')
-        window.location.reload();
+        dispatch(fetchBlogKu());
+        //window.location.reload();
         //history.push('/my-blog');
     })
 }

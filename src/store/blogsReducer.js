@@ -27,6 +27,11 @@ const blogReducer = (state = initialState , action) => {
                 ...state,
                 myBlog:state.data.concat(action.payload)
             }
+        case "REFRESH" :
+            return{
+                ...state,
+                myBlog:action.payload
+            }
         case "LOGGED_IN" :
             return{
                 ...state,

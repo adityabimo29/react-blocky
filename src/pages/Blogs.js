@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { fetchBlogKu,deleteData } from '../store/blogsAction';
 import {Link} from 'react-router-dom';
 import ReactImageFallback from "react-image-fallback";
+import Swal from 'sweetalert2';
 
 //import axios from 'axios';
 class Blogs extends Component {
@@ -18,8 +19,25 @@ class Blogs extends Component {
     }
 
     handleDelete = (e) => {
-        //alert(e);
-        this.props.deleteData(e);
+
+        Swal.fire({
+            text: "Are You Sure Delete this data ?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yuppi !'
+          }).then((result) => {
+            if (result.value) {
+              Swal.fire(
+                'Success!',
+                'Your has been successfully deleted.',
+                'success'
+              )
+              this.props.deleteData(e);
+            }
+          })
+        
         
     }
 
