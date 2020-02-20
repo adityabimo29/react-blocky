@@ -7,6 +7,7 @@ import { withRouter } from 'react-router-dom';
 import jwt from 'jwt-decode';
 import ReactQuill from 'react-quill'; 
 import 'react-quill/dist/quill.snow.css';
+import ReactImageFallback from "react-image-fallback";
 
 class EditBlog extends Component {
 
@@ -116,7 +117,14 @@ class EditBlog extends Component {
                                 </FormGroup>
                                 {this.state.gambarType !== "" ? (
                                     <img src={this.state.gambarImage} alt="avatar" style={{width:'100px'}} />
-                                ): (<img style={{width:'150px'}} alt='oldImage' src={ this.state.urlImg + this.props.dataku.image} />)}
+                                ): ( <ReactImageFallback
+                                    src={this.state.urlImg + this.props.dataku.image}
+                                    fallbackImage={`${this.state.urlImg}assets/blocky.jpg`}
+                                    alt="cool image ku"
+                                    className="my-image"
+                                    style={{width:'150px',marginBottom:'10px'}}
+                                />
+                                )}
                                 <Button style={{marginTop:'10px'}} type='submit' color="primary" size="md" block disabled={isSubmitting}>Submit</Button>
                                 </Form>
                             )}

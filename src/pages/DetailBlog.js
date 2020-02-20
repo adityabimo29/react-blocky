@@ -7,6 +7,7 @@ import moment from 'moment';
 import { Facebook, Twitter } from 'react-sharingbuttons';
 import 'react-sharingbuttons/dist/main.css';
 import Disqus from 'disqus-react';
+import ReactImageFallback from "react-image-fallback";
 class DetailBlog extends Component {
 
      componentDidMount () {
@@ -33,7 +34,13 @@ class DetailBlog extends Component {
                         <Card style={{padding:'10px'}}>
                         <h1 className='text-center'>{data.title}</h1>
                         <small className='mb-2' style={{fontWeight:'bold'}}>{myDate}</small>
-                        <img style={{width:'100%'}} alt='gambar' src={gambaria + data.image} />
+                        <ReactImageFallback
+                            src={gambaria + data.image}
+                            fallbackImage={`${gambaria}assets/blocky.jpg`}
+                            alt="cool image ku"
+                            className="my-image"
+                            style={{width:'100%',minHeight:'200px'}}
+                        />
                         <Row>
                             <Col md={12}>
                                 <Facebook url={urlShare}   />

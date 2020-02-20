@@ -4,6 +4,7 @@ import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { fetchBlogKu,deleteData } from '../store/blogsAction';
 import {Link} from 'react-router-dom';
+import ReactImageFallback from "react-image-fallback";
 
 //import axios from 'axios';
 class Blogs extends Component {
@@ -58,7 +59,13 @@ class Blogs extends Component {
                                     <th scope="row">{index + 1}</th>
                                     <td>{item.title}</td>
                                     <td><div dangerouslySetInnerHTML={{__html: content}}></div></td>
-                                    <td><img style={{width:"100px"}} src={gambaria + item.image} alt={item.image} /></td>
+                                    <td><ReactImageFallback
+                                    src={gambaria + item.image}
+                                    fallbackImage={`${gambaria}assets/blocky.jpg`}
+                                    alt="cool image ku"
+                                    className="my-image"
+                                    style={{width:'100px'}}
+                                    /></td>
                                     <td>
                                         <Button className='mr-2' tag={Link} to={`/blogs/edit/${item._id}`} color="warning">Edit</Button>
                                         <small onClick={() => {this.handleDelete(item._id)}} className='btn btn-danger'>Delete</small>
