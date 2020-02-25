@@ -1,6 +1,7 @@
 import React from 'react';
 import {Router,Switch,Route,Redirect} from 'react-router-dom';
 import history from './history'
+//import Navbar from './components/Navbar';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Blogs from './pages/Blogs';

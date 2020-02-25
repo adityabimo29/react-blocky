@@ -1,0 +1,41 @@
+.navRacoon{
+    display: flex;
+    flex-direction:row;
+    justify-content: space-around;
+    background-color: #EA2027;
+    color:white;
+}
+.navbar{
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.my-logo{
+    height: 150px;
+}
+.nav-logo{
+    margin-top: 10px;
+}
+
+.nav-item{
+    
+    padding:0 20px;
+    list-style: none;
+}
+
+.nav-item a {
+    color: white;
+}
+
+.nav-item a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.nav-item:hover{
+    background-color: cadetblue;
+}
+
+.nav-righty{
+    margin-top: 20px;
+}
